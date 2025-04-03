@@ -1,0 +1,104 @@
+.header {
+    text-align: center;
+    padding-block: clamp(1.5rem, 3vw, 3rem);
+  
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: $clr-primary;
+      margin-bottom: clamp(0.5rem, 1vw, 1rem);
+    }
+  
+    p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: $clr-text-muted;
+    }
+  }
+
+  #assignForm {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.75rem, 1.5vw, 1.5rem);
+    max-width: 500px;
+    margin-inline: auto;
+    margin-bottom: clamp(1rem, 2vw, 2rem);
+  
+    input[type="email"] {
+      padding: clamp(0.6rem, 1.2vw, 1rem);
+      font-size: clamp(1rem, 2.5vw, 1.125rem);
+      border: 1px solid $clr-border;
+      border-radius: $radius;
+      background-color: $clr-input-bg;
+      color: $clr-text;
+      width: 100%;
+    }
+    button {
+        background-color: $clr-primary;
+        color: $clr-button-text;
+        font-weight: 600;
+        padding: clamp(0.6rem, 1vw, 1rem);
+        font-size: clamp(1rem, 2.5vw, 1.125rem);
+        border: none;
+        border-radius: $radius;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    
+        &:hover {
+          background-color: $clr-primary-dark;
+        }
+      }
+    }
+
+    .current-image {
+        text-align: center;
+        margin-bottom: clamp(2rem, 3vw, 3rem);
+      
+        .image-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: clamp(1rem, 2vw, 2rem);
+      
+          img {
+            max-width: 100%;
+            height: auto;
+            border-radius: $radius;
+            box-shadow: $shadow;
+          }
+        }
+      }
+
+      //assignment cards
+
+
+      .assignment-card {
+        background-color: $clr-card-bg;
+        border: 1px solid $clr-border;
+        border-radius: $radius;
+        padding: clamp(1rem, 2vw, 2rem);
+        text-align: center;
+        box-shadow: $shadow;
+      
+        h3 {
+          font-size: clamp(1rem, 2vw, 1.25rem);
+          margin-bottom: clamp(0.5rem, 1vw, 1rem);
+          color: $clr-text;
+          word-break: break-word;
+        }
+      
+        img {
+          max-width: 100%;
+          height: auto;
+          border-radius: $radius;
+          margin-top: clamp(0.5rem, 1vw, 1rem);
+        }
+      }
+
+      //footer
+
+      .footer {
+        text-align: center;
+        padding-block: clamp(1.5rem, 3vw, 2rem);
+        font-size: clamp(0.875rem, 1.5vw, 1rem);
+        color: $clr-text-muted;
+        background-color: $clr-footer-bg;
+      } 
