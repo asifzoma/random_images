@@ -21,7 +21,9 @@ function loadRandomImage() {
  * Validate email with a basic regex
  */
 function validateEmail(email) {
-  return /^[\w-.]+@[\w-]+\.[\w-.]+$/.test(email);
+  return /^(?!test@test$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/t(email);
+
+
 }
 
 /**
