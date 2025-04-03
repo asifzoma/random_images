@@ -1,0 +1,43 @@
+// base container layout
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, calc(0.184rem + 2.851vw), 2.75rem); // padding for mobile and desktop
+    width: 100%;
+}
+
+//section padding and spacing 
+.section {
+    padding: clamp(0.8rem, calc(0.52rem + 1.222vw), 1.4rem) 0; // top and bottom padding for sections on mobile and desktop
+}
+
+// How Flex will be used throughout the site
+.flex {
+    display: flex;
+}
+
+// items will be added dead center
+.flex-center {
+    display: flex;
+    align-items: center; // any item with this class will be centered vertically
+    justify-content: center; // any item with this class will be centered horizontally
+  }
+  
+  .flex-column {
+    display: flex;
+    flex-direction: column; // any item with this class will be stacked vertically
+  }
+  
+  .flex-between {
+    display: flex;
+    justify-content: space-between; // any item with this class will be spaced out evenly to opposite ends
+    align-items: center; // any item with this class will be centered vertically
+  }
+
+  
+
+
+
+
+
