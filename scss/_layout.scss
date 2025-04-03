@@ -35,7 +35,26 @@
     align-items: center; // any item with this class will be centered vertically
   }
 
-  
+  // Grid will be used to display the assigned images  classes have been added to the grid to make it responsive
+  .grid {
+    display: grid;
+    gap: clamp(0.75rem, 1vw, 1.5rem); // responsive gap
+  }
+
+  .grid-auto {
+    display: grid;
+    gap: clamp(0.75rem, 1vw, 1.5rem);
+    grid-template-columns: repeat(auto-fit, minmax(clamp(220px, 30vw, 350px), 1fr)); //trying this to see if it will make the grid responsive
+  }
+
+  //margin spacing utilities using clamps to cut down on amount of code
+
+  .mt { margin-top: clamp(1rem, 2vw, 2rem); }
+.mb { margin-bottom: clamp(1rem, 2vw, 2rem); }
+
+    
+
+
 
 
 
