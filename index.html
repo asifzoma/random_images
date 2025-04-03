@@ -18,19 +18,21 @@
                        placeholder="Enter valid email" required>
                 <button type="submit">Assign Image</button>
             </form>
+        <div class="image-layout"> <!-- new layout for the image and assignments -->    
             <!--Display Current Image-->
             <section class="current-image">
                 <h2>Current Image</h2>
                 <div class="image-container">
                     <img id="currentImage" alt="Current image"> <!-- Current image will be displayed here -->
-                    <button id="loadImageBtn">Load New Image</button>
                 </div>
+                <button id="loadImageBtn">Load New Image</button>
             </section>
                 <!-- Display assigned image -->
                 <section class="assignments">
                     <h2>Image Assignments</h2>
                     <div id="assignmentsList" class="grid grid-auto"></div> <!-- Grid will be used to display the assigned images  classes have been added to the grid to make it responsive-->
             </section>
+        </div>
         </main>
         <footer class="footer">
             <div class="container">
