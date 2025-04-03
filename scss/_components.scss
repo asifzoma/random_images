@@ -7,10 +7,26 @@
       color: $clr-primary;
       margin-bottom: clamp(0.5rem, 1vw, 1rem);
     }
-  
+    
     p {
       font-size: clamp(1rem, 2vw, 1.25rem);
-      color: $clr-text-muted;
+      color: $clr-text;
+    }
+  }
+
+  .current-image {
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: $clr-primary-dark;
+      margin-bottom: clamp(0.5rem, 1vw, 1rem);
+    }
+  }
+  
+  .assignments {
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: $clr-primary-dark;
+      margin-bottom: clamp(0.5rem, 1vw, 1rem);
     }
   }
 
@@ -67,6 +83,23 @@
         }
       }
 
+      #loadImageBtn {
+        background-color: $clr-primary-dark;
+        color: $clr-button-text;
+        font-weight: 600;
+        padding: clamp(0.6rem, 1vw, 1rem);
+        font-size: clamp(1rem, 2.5vw, 1.125rem);
+        border: none;
+        border-radius: $radius;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        
+        &:hover {
+          background-color: $clr-primary;
+        }
+        
+      }
+
       //assignment cards
 
 
@@ -76,6 +109,7 @@
         border-radius: $radius;
         padding: clamp(1rem, 2vw, 2rem);
         text-align: center;
+        transition: transform 0.3s ease;
         box-shadow: $shadow;
       
         h3 {
