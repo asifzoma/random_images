@@ -136,3 +136,26 @@
         color: $clr-text-muted;
         background-color: $clr-footer-bg;
       } 
+
+
+      //validation for when email has been inputted
+
+      // Error styles
+.input-error {
+    border-color: red;
+    background-color: #ffe6e6;
+  }
+  
+  // Shake animation
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+  
+  .shake {
+    animation: shake 0.3s ease;
+  }
+  
