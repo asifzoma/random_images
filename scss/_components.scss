@@ -34,19 +34,25 @@
     display: flex;
     flex-direction: column;
     gap: clamp(0.75rem, 1.5vw, 1.5rem);
-    max-width: 500px;
-    margin-inline: auto;
-    margin-bottom: clamp(1rem, 2vw, 2rem);
+    // max-width: 500px;
+    margin: clamp(1rem, 2vw, 2rem) clamp(1rem, 2vw, 2rem);
+
+    .email-input {
+        max-width: clamp(300px, 50vw, 500px);
+    }
   
     input[type="email"] {
-      padding: clamp(0.6rem, 1.2vw, 1rem);
+      padding: clamp(0.6rem, 1.2vw, 1rem) clamp(0.6rem, 1.2vw, 1rem);
       font-size: clamp(1rem, 2.5vw, 1.125rem);
       border: 1px solid $clr-border;
       border-radius: $radius;
       background-color: $clr-input-bg;
       color: $clr-text;
-      width: 100%;
+    //   width: 100%;
+      margin: clamp(10px, 1vw, 1rem) clamp(10px, 1vw, 1rem);
     }
+
+    
     button {
         background-color: $clr-primary;
         color: $clr-button-text;
@@ -74,7 +80,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-bottom: clamp(1rem, 2vw, 2rem);
+          margin-top: clamp(1rem, 2vw, 2rem);
       
           img {
             max-width: 100%;
@@ -83,14 +89,15 @@
             box-shadow: $shadow;
           }
         }
+      }
 
         #loadImageBtn {
           display: block;
-          margin: 0 auto;
+          margin: clamp(10px, 1vw, 1rem) auto;
           background-color: $clr-primary-dark;
           color: $clr-button-text;
           font-weight: 600;
-          padding: clamp(0.6rem, 1vw, 1rem);
+          padding: clamp(10px, 1vw, 1rem) clamp(0.6rem, 1vw, 1rem);
           font-size: clamp(1rem, 2.5vw, 1.125rem);
           border: none;
           border-radius: $radius;
@@ -101,7 +108,7 @@
             background-color: $clr-primary;
           }
         }
-      }
+      
 
       //assignment cards
 
@@ -126,7 +133,7 @@
           max-width: 100%;
           height: auto;
           border-radius: $radius;
-          margin-top: clamp(0.5rem, 1vw, 1rem);
+          margin: clamp(0.5rem, 1vw, 1rem) clamp(0.5rem, 1vw, 1rem);
         }
       }
 
