@@ -1,11 +1,10 @@
 // base container layout
 
 .container {
-    max-width: 1200px;
+    max-width: 95vw;
     margin: 0 10px;
     padding: 10px clamp(2vw, calc(0.184rem + 2.851vw), 2.75rem); // padding for mobile and desktop
-    width: 98%;
-    overflow-x: hidden;
+    overflow-x: none;
 
     body {
         font-family: $font-body;

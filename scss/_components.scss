@@ -12,6 +12,15 @@
       font-size: clamp(1rem, 2vw, 1.25rem);
       color: $clr-text;
     }
+
+    .banner-img {
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+      height: 120px;
+      padding: 10px, 10px;
+      border-radius: $radius;
+    }
   }
 
   .current-image {
@@ -23,6 +32,8 @@
   }
   
   .assignments {
+
+    
     h2 {
       font-size: clamp(1.5rem, 3vw, 2rem);
       color: $clr-primary-dark;
@@ -69,6 +80,8 @@
             height: auto;
             border-radius: $radius;
             box-shadow: $shadow;
+            margin: clamp(10px, 1vw, 1rem) clamp(10px, 1vw, 1rem);
+            padding: clamp(10px, 1vw, 1rem) clamp(10px, 1vw, 1rem);
           }
         }
       }
@@ -151,7 +164,23 @@
     animation: shake 0.3s ease;
   }
 
-
+  .image-layout {
+    display: flex;
+    flex-direction: column; // mobile default
+    gap: clamp(1rem, 2vw, 2rem);
+    margin: clamp(1.5rem, 3vw, 2.5rem);
+    gap: clamp(1rem, 2vw, 2rem);
+  
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  
+    .current-image,
+    .assignments {
+      flex: 1;
+    }
+  }
   
   }
 
@@ -164,13 +193,11 @@
   // Danger button (e.g. delete)
   .btn-danger {
     @include button-style($clr-danger, $clr-button-text, darken($clr-danger, 10%));
-    color: $secondary-color;
   }
     
   // Warning button 
   .btn-warning {
-    @include button-style($clr-danger, #000, darken($clr-warning, 10%));
-    color: $secondary-color;
+    @include button-style($clr-warning, #000, darken($clr-warning, 10%));
   }
   
   // Primary button 
@@ -178,20 +205,3 @@
     @include button-style($clr-primary, $clr-button-text, $clr-primary-dark);
   }
   
-
-  .image-layout {
-    display: flex;
-    flex-direction: column; // mobile default
-    gap: clamp(1rem, 2vw, 2rem);
-    margin-top: clamp(1.5rem, 3vw, 2.5rem);
-  
-    @media (min-width: 768px) {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-  
-    .current-image,
-    .assignments {
-      flex: 1;
-    }
-  }
