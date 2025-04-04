@@ -13,11 +13,22 @@
             <p>Assign a random image to each email address</p>
         </header>
             <!-- Form for email input and assign button -->
-             <form id="assignForm" novalidate> <!-- novalidate attribute used to disable the browser's default validation -->
-                <input type="email" id="emailInput" 
-                       placeholder="Enter valid email" required>
-                <button type="submit">Assign Image</button>
-            </form>
+            <form id="emailForm" novalidate>
+                <label for="emailInput">Add New Email Address</label>
+                <input type="email" id="emailInput" placeholder="Enter a valid email" required />
+                <button type="button" id="saveEmailBtn">Save Email</button>
+              </form>
+              <div class="image-assign-section">
+                <h2>Assign Image</h2>
+                <div class="assign-controls">
+                  <label for="emailSelect">Choose an Email</label>
+                  <select id="emailSelect">
+                    <option value="">-- Select saved email --</option>
+                  </select>
+                  <button type="button" id="assignImageBtn">Assign Image</button>
+                </div>
+              </div>
+
         <div class="image-layout"> <!-- new layout for the image and assignments -->    
             <!--Display Current Image-->
             <section class="current-image">

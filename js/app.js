@@ -1,72 +1,26 @@
-// Store emails and their assigned image URLs
+// Save validated email addresses and assigned images
+const savedEmails = new Set();
 const emailImageMap = new Map();
+let currentSeed = null;
 
-/**
- * Generate a random image URL
- * This gets a new image every time because of the changing query string
- */
+// Generate a seeded image URL
 function getRandomImageUrl() {
-  return `https://picsum.photos/200?random=${Date.now()}`;
+  currentSeed = Math.random().toString(36).substring(2, 10);
+  return `https://picsum.photos/seed/${currentSeed}/200`;
 }
 
-/**
- * Load a new image into the #currentImage <img>
- */
+// Load a random image into the preview
 function loadRandomImage() {
   const img = document.getElementById('currentImage');
   img.src = getRandomImageUrl();
 }
 
-/**
- * Validate email with a basic regex
- */
+// Validate email format
 function validateEmail(email) {
-  return /^(?!test@test$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/t(email);
-
-
+  return /^[\w-.]+@[\w-]+\.[\w-.]+$/.test(email);
 }
 
-/**
- * Show a custom toast-style error and animate the input
- */
-function showCustomError(inputElement, message) {
-  inputElement.classList.add('input-error', 'shake');
-
-  // Remove shake after animation
-  setTimeout(() => inputElement.classList.remove('shake'), 400);
-
-  // Create or reuse toast
-  let toast = document.getElementById('toast');
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.id = 'toast';
-    toast.style.position = 'fixed';
-    toast.style.bottom = '2rem';
-    toast.style.left = '50%';
-    toast.style.transform = 'translateX(-50%)';
-    toast.style.backgroundColor = '#d9534f';
-    toast.style.color = '#fff';
-    toast.style.padding = '1rem 1.5rem';
-    toast.style.borderRadius = '8px';
-    toast.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
-    toast.style.zIndex = '999';
-    toast.style.fontSize = '1rem';
-    toast.style.opacity = '0';
-    toast.style.transition = 'opacity 0.3s ease';
-    document.body.appendChild(toast);
-  }
-
-  toast.textContent = message;
-  toast.style.opacity = '1';
-
-  setTimeout(() => {
-    toast.style.opacity = '0';
-  }, 2500);
-}
-
-/**
- * Display all assigned images grouped by email
- */
+// Display all assignments under each email
 function displayAssignments() {
   const container = document.getElementById('assignmentsList');
   container.innerHTML = '';
@@ -89,83 +43,90 @@ function displayAssignments() {
   });
 }
 
-/**
- * Handle form submission to assign an image
- */
-document.getElementById('assignForm').addEventListener('submit', function (e) {
-  e.preventDefault();
+// Add a new email to the dropdown
+function addEmailToDropdown(email) {
+  const dropdown = document.getElementById('emailSelect');
+  const option = document.createElement('option');
+  option.value = email;
+  option.textContent = email;
+  dropdown.appendChild(option);
+}
 
+// Show a toast message (success or error)
+function showToast(message, bgColor = '#28a745') {
+  let toast = document.getElementById('toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '2rem';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%)';
+    toast.style.padding = '1rem 1.5rem';
+    toast.style.borderRadius = '8px';
+    toast.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
+    toast.style.zIndex = '999';
+    toast.style.fontSize = '1rem';
+    toast.style.opacity = '0';
+    toast.style.transition = 'opacity 0.3s ease';
+    toast.style.color = '#fff';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.style.backgroundColor = bgColor;
+  toast.style.opacity = '1';
+  setTimeout(() => toast.style.opacity = '0', 2500);
+}
+
+// Save Email Button Click
+const saveEmailBtn = document.getElementById('saveEmailBtn');
+saveEmailBtn.addEventListener('click', function () {
   const emailInput = document.getElementById('emailInput');
   const email = emailInput.value.trim().toLowerCase();
-  const imageUrl = document.getElementById('currentImage').src;
 
-  // Clear old error state
-  emailInput.classList.remove('input-error');
-
-  // Validate
   if (!validateEmail(email)) {
-    showCustomError(emailInput, "Please add a real email address, thanks!");
+    showToast('Please enter a valid email address.', '#d9534f');
     return;
   }
 
-  // Add to map
+  if (!savedEmails.has(email)) {
+    savedEmails.add(email);
+    addEmailToDropdown(email);
+    showToast(`Email ${email} added successfully.`);
+  } else {
+    showToast(`Email ${email} already exists.`, '#ffc107');
+  }
+
+  emailInput.value = '';
+});
+
+// Assign Image Button Click
+const assignImageBtn = document.getElementById('assignImageBtn');
+assignImageBtn.addEventListener('click', function () {
+  const emailSelect = document.getElementById('emailSelect');
+  const email = emailSelect.value;
+  const imageUrl = `https://picsum.photos/seed/${currentSeed}/200`;
+
+  if (!email) {
+    showToast('Please select an email address first.', '#d9534f');
+    return;
+  }
+
   if (!emailImageMap.has(email)) {
     emailImageMap.set(email, []);
   }
 
   emailImageMap.get(email).push(imageUrl);
-
-  // Update the UI
   displayAssignments();
-  emailInput.value = '';
+  showToast(`✅ Image successfully assigned to ${email}`);
   loadRandomImage();
 });
 
-/**
- * Load a new image when "Load New Image" button is clicked
- */
-document.getElementById('loadImageBtn').addEventListener('click', loadRandomImage);
+// Sync dropdown with input field if needed
+const emailSelect = document.getElementById('emailSelect');
+emailSelect.addEventListener('change', function () {
+  document.getElementById('emailInput').value = this.value;
+});
 
-/**
- * Load an image on first page load
- */
+// Load an initial image on page load
 document.addEventListener('DOMContentLoaded', loadRandomImage);
-
-
-/* successful toast 
-
-/**
- * Show a toast message with custom content and optional background colour
- * @param {string} message - The message to display
- * @param {string} [bgColor='#28a745'] - Background colour (green by default)
- */
-function showToast(message, bgColor = '#28a745') {
-    let toast = document.getElementById('toast');
-  
-    if (!toast) {
-      toast = document.createElement('div');
-      toast.id = 'toast';
-      toast.style.position = 'fixed';
-      toast.style.bottom = '2rem';
-      toast.style.left = '50%';
-      toast.style.transform = 'translateX(-50%)';
-      toast.style.color = '#fff';
-      toast.style.padding = '1rem 1.5rem';
-      toast.style.borderRadius = '8px';
-      toast.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
-      toast.style.zIndex = '999';
-      toast.style.fontSize = '1rem';
-      toast.style.opacity = '0';
-      toast.style.transition = 'opacity 0.3s ease';
-      document.body.appendChild(toast);
-    }
-  
-    toast.textContent = message;
-    toast.style.backgroundColor = bgColor;
-    toast.style.opacity = '1';
-  
-    setTimeout(() => {
-      toast.style.opacity = '0';
-    }, 2500);
-  }
-  
