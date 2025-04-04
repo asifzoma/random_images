@@ -30,7 +30,7 @@
     }
   }
 
-  #assignForm {
+  #emailForm {
     display: flex;
     flex-direction: column;
     gap: clamp(0.75rem, 1.5vw, 1.5rem);
@@ -53,25 +53,7 @@
     }
 
     
-    button {
-        background-color: $clr-primary;
-        color: $clr-button-text;
-        font-weight: 600;
-        padding: clamp(0.6rem, 1vw, 1rem);
-        font-size: clamp(1rem, 2.5vw, 1.125rem);
-        border: none;
-        border-radius: $radius;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    
-        &:hover {
-          background-color: $clr-primary-dark;
-        }
-      }
-    }
-
-
-
+   
     .current-image {
         text-align: center;
         margin-bottom: clamp(2rem, 3vw, 3rem);
@@ -169,6 +151,34 @@
     animation: shake 0.3s ease;
   }
 
+
+  
+  }
+
+ // Base button style using mixin
+
+ .btn {
+    @include button-style($clr-primary, $clr-button-text, $clr-primary-dark);
+  }
+  
+  // Danger button (e.g. delete)
+  .btn-danger {
+    @include button-style($clr-danger, $clr-button-text, darken($clr-danger, 10%));
+    color: $secondary-color;
+  }
+    
+  // Warning button 
+  .btn-warning {
+    @include button-style($clr-danger, #000, darken($clr-warning, 10%));
+    color: $secondary-color;
+  }
+  
+  // Primary button 
+  .btn-primary {
+    @include button-style($clr-primary, $clr-button-text, $clr-primary-dark);
+  }
+  
+
   .image-layout {
     display: flex;
     flex-direction: column; // mobile default
@@ -185,4 +195,3 @@
       flex: 1;
     }
   }
-  

@@ -43,6 +43,10 @@ function displayAssignments() {
   });
 }
 
+// Load a random image
+document.getElementById('loadImageBtn').addEventListener('click', loadRandomImage);
+
+
 // Add a new email to the dropdown
 function addEmailToDropdown(email) {
   const dropdown = document.getElementById('emailSelect');
@@ -124,7 +128,7 @@ localStorage.setItem('emailImageMap', JSON.stringify(plainMap));
 
   displayAssignments();
   showToast(`✅ Image successfully assigned to ${email}`);
-  loadRandomImage();
+//   loadRandomImage();
 });
 
 // Sync dropdown with input field if needed
