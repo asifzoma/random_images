@@ -91,6 +91,8 @@ saveEmailBtn.addEventListener('click', function () {
 
   if (!savedEmails.has(email)) {
     savedEmails.add(email);
+    localStorage.setItem('savedEmails', JSON.stringify([...savedEmails]));
+
     addEmailToDropdown(email);
     showToast(`Email ${email} added successfully.`);
   } else {
@@ -117,6 +119,9 @@ assignImageBtn.addEventListener('click', function () {
   }
 
   emailImageMap.get(email).push(imageUrl);
+  const plainMap = Object.fromEntries(emailImageMap);
+localStorage.setItem('emailImageMap', JSON.stringify(plainMap));
+
   displayAssignments();
   showToast(`✅ Image successfully assigned to ${email}`);
   loadRandomImage();
@@ -130,3 +135,55 @@ emailSelect.addEventListener('change', function () {
 
 // Load an initial image on page load
 document.addEventListener('DOMContentLoaded', loadRandomImage);
+
+
+// Clear All Images Button Click
+const clearImagesBtn = document.getElementById('clearImagesBtn');
+clearImagesBtn.addEventListener('click', function () {
+  const selectedEmail = emailSelect.value;
+
+  if (!selectedEmail) {
+    showToast('Please select an email to clear images.', '#d9534f');
+    return;
+  }
+
+  if (emailImageMap.has(selectedEmail)) {
+    emailImageMap.set(selectedEmail, []);
+    localStorage.setItem('emailImageMap', JSON.stringify(Object.fromEntries(emailImageMap)));
+    displayAssignments();
+    showToast(`🗑️ All images cleared for ${selectedEmail}`);
+  } else {
+    showToast('No images found for that email.', '#ffc107');
+  }
+});
+
+
+// Delete Email Button Click
+const deleteEmailBtn = document.getElementById('deleteEmailBtn');
+deleteEmailBtn.addEventListener('click', function () {
+  const selectedEmail = emailSelect.value;
+
+  if (!selectedEmail) {
+    showToast('Please select an email to delete.', '#d9534f');
+    return;
+  }
+
+  // Remove from Set and Map
+  savedEmails.delete(selectedEmail);
+  emailImageMap.delete(selectedEmail);
+
+  // Remove from dropdown
+  const optionToRemove = [...emailSelect.options].find(opt => opt.value === selectedEmail);
+  if (optionToRemove) emailSelect.removeChild(optionToRemove);
+
+  // Clear from input
+  document.getElementById('emailInput').value = '';
+
+  // Update storage
+  localStorage.setItem('savedEmails', JSON.stringify([...savedEmails]));
+  localStorage.setItem('emailImageMap', JSON.stringify(Object.fromEntries(emailImageMap)));
+
+  displayAssignments();
+  showToast(`❌ Email ${selectedEmail} deleted along with its images.`, '#d9534f');
+});
+
