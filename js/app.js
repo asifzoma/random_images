@@ -20,6 +20,7 @@ function validateEmail(email) {
   return /^[\w-.]+@[\w-]+\.[\w-.]+$/.test(email);
 }
 
+
 // Display all assignments under each email
 function displayAssignments() {
   const container = document.getElementById('assignmentsList');
@@ -43,6 +44,20 @@ function displayAssignments() {
   });
 }
 
+
+// Reusable function to apply shake + error styling
+function applyShakeEffect(element) {
+  element.classList.remove('shake');
+  void element.offsetWidth; // forces reflow
+  element.classList.add('input-error', 'shake');
+
+  setTimeout(() => {
+    element.classList.remove('input-error', 'shake');
+  }, 500);
+}
+
+
+
 // Load a random image
 document.getElementById('loadImageBtn').addEventListener('click', loadRandomImage);
 
@@ -63,7 +78,7 @@ function showToast(message, bgColor = '#28a745') {
     toast = document.createElement('div');
     toast.id = 'toast';
     toast.style.position = 'fixed';
-    toast.style.bottom = '2rem';
+    toast.style.top = '50%';
     toast.style.left = '50%';
     toast.style.transform = 'translateX(-50%)';
     toast.style.padding = '1rem 1.5rem';
@@ -79,7 +94,7 @@ function showToast(message, bgColor = '#28a745') {
   toast.textContent = message;
   toast.style.backgroundColor = bgColor;
   toast.style.opacity = '1';
-  setTimeout(() => toast.style.opacity = '0', 2500);
+  setTimeout(() => toast.style.opacity = '0', 4000);
 }
 
 // Save Email Button Click
@@ -90,13 +105,8 @@ saveEmailBtn.addEventListener('click', function () {
 
   if (!validateEmail(email)) {
     showToast('Please enter a valid email address.', '#d9534f');
-    emailSelect.classList.remove('shake'); //  force reset
-  void emailSelect.offsetWidth;          //  trigger reflow
-  emailSelect.classList.add('input-error', 'shake'); //  re-add cleanly
+    applyShakeEffect(emailInput);
 
-  setTimeout(() => {
-    emailSelect.classList.remove('input-error', 'shake');
-  }, 500);
 
     return;
   }
@@ -123,6 +133,7 @@ assignImageBtn.addEventListener('click', function () {
 
   if (!email) {
     showToast('Please select an email address first.', '#d9534f');
+    applyShakeEffect(emailSelect);
     return;
   }
 
@@ -155,12 +166,10 @@ clearImagesBtn.addEventListener('click', function () {
   const selectedEmail = emailSelect.value;
 
   if (!selectedEmail) {
-    showToast('Please select an email to clear images.', '#d9534f');
-    emailSelect.classList.add('input-error', 'shake');
-    setTimeout(() => {
-      emailSelect.classList.remove('input-error', 'shake');
-    }, 500);
-
+    showToast('Please select an email address.', '#d9534f');
+  
+    applyShakeEffect(emailSelect); //  should shake the dropdown
+  
     return;
   }
 
