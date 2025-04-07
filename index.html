@@ -35,7 +35,7 @@
           <form id="emailForm" novalidate>
             <h2 for="emailInput">Add An Email Address:</h2>
             <input type="email" id="emailInput" placeholder="Enter a valid email" required />
-            <button type="button" id="saveEmailBtn" class="btn">Save Email</button>
+            <button type="button" id="saveEmailBtn" class="btn-primary">Save Email</button>
           </form>
             <h2>Assign Image</h2>
               <div class="assign-controls">
@@ -45,6 +45,10 @@
                   </select>
                   <button type="button" id="assignImageBtn" class="btn">Assign Image</button>
               </div>
+              <div class="warning-buttons">   
+                <button id="clearImagesBtn" class="btn btn-warning">Clear All Images</button>
+                <button id="deleteEmailBtn" class="btn btn-warning">Delete Email</button>
+            </div>
         </section>
 
 
@@ -54,10 +58,7 @@
                         <div class="image-assign-section">
                             <div id="assignmentsList" class="grid grid-auto"></div> <!-- Grid will be used to display the assigned images  classes have been added to the grid to make it responsive-->
                          
-                    <div class="warning-buttons">   
-                        <button id="clearImagesBtn" class="btn btn-warning">Clear All Images</button>
-                        <button id="deleteEmailBtn" class="btn btn-warning">Delete Email</button>
-                    </div>
+                    
         </section>
       </div>
   </main>

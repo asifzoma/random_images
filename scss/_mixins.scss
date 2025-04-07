@@ -18,3 +18,30 @@
     }
   }
   
+
+  //border and hover styles
+  @mixin bordered-section {
+    border: 1px solid $clr-primary; // primary colour border
+    border-radius: 12px;
+    padding: 1rem;
+    background-color: $clr-card-bg;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.06); // right + bottom shadow
+  
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  
+    &:hover {
+      box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.12); // slightly deeper on hover
+      transform: translateY(-2px); // tiny lift
+    }
+  }
+
+
+  @mixin responsive-padding {
+  padding: clamp(1rem, 2.5vw, 2rem);
+}
+
+@mixin responsive-margin {
+  margin: clamp(0.5rem, 2vw, 1.5rem) auto;
+}
+
+  

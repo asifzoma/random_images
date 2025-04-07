@@ -90,6 +90,14 @@ saveEmailBtn.addEventListener('click', function () {
 
   if (!validateEmail(email)) {
     showToast('Please enter a valid email address.', '#d9534f');
+    emailSelect.classList.remove('shake'); //  force reset
+  void emailSelect.offsetWidth;          //  trigger reflow
+  emailSelect.classList.add('input-error', 'shake'); //  re-add cleanly
+
+  setTimeout(() => {
+    emailSelect.classList.remove('input-error', 'shake');
+  }, 500);
+
     return;
   }
 
@@ -148,6 +156,11 @@ clearImagesBtn.addEventListener('click', function () {
 
   if (!selectedEmail) {
     showToast('Please select an email to clear images.', '#d9534f');
+    emailSelect.classList.add('input-error', 'shake');
+    setTimeout(() => {
+      emailSelect.classList.remove('input-error', 'shake');
+    }, 500);
+
     return;
   }
 

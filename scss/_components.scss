@@ -1,6 +1,7 @@
 .header {
     text-align: center;
     padding-block: clamp(1.5rem, 3vw, 3rem);
+    
   
     h1 {
       font-size: clamp(2rem, 5vw, 3rem);
@@ -16,9 +17,9 @@
     .banner-img {
       object-fit: cover;
       object-position: center;
-      width: 100%;
+      min-width: clamp(200px, 50%, 700px);
       height: 120px;
-      padding: 10px, 10px;
+      padding: clamp(5px, 1vw, 1rem) clamp(5px, 1vw, 1rem);
       border-radius: $radius;
     }
   }
@@ -28,6 +29,8 @@
       font-size: clamp(1.5rem, 3vw, 2rem);
       color: $clr-primary-dark;
       margin-bottom: clamp(0.5rem, 1vw, 1rem);
+      text-align: center;
+      border-radius: $radius;
     }
   }
   
@@ -46,10 +49,10 @@
     flex-direction: column;
     gap: clamp(0.75rem, 1.5vw, 1.5rem);
     // max-width: 500px;
-    margin: clamp(1rem, 2vw, 2rem) clamp(1rem, 2vw, 2rem);
+    margin: clamp(5px, 2vw, 10px) clamp(5px, 2vw, 10px);
 
     .email-input {
-        max-width: clamp(300px, 50vw, 500px);
+        max-width: clamp(200px, 50vw, 500px);
     }
   
     input[type="email"] {
@@ -104,44 +107,7 @@
           }
         }
       
-
-      //assignment cards
-
-
-      .assignment-card {
-        background-color: $clr-card-bg;
-        border: 1px solid $clr-border;
-        border-radius: $radius;
-        padding: clamp(1rem, 2vw, 2rem);
-        text-align: center;
-        transition: transform 0.3s ease;
-        box-shadow: $shadow;
-      
-        h3 {
-          font-size: clamp(1rem, 2vw, 1.25rem);
-          margin-bottom: clamp(0.5rem, 1vw, 1rem);
-          color: $clr-text;
-          word-break: break-word;
-        }
-      
-        img {
-          max-width: 100%;
-          height: auto;
-          border-radius: $radius;
-          margin: clamp(0.5rem, 1vw, 1rem) clamp(0.5rem, 1vw, 1rem);
-        }
-      }
-
-      //footer
-
-      .footer {
-        text-align: center;
-        padding-block: clamp(1.5rem, 3vw, 2rem);
-        font-size: clamp(0.875rem, 1.5vw, 1rem);
-        color: $clr-text-muted;
-        background-color: $clr-footer-bg;
-      } 
-
+    
 
       //validation for when email has been inputted
 
@@ -164,24 +130,7 @@
     animation: shake 0.3s ease;
   }
 
-  .image-layout {
-    display: flex;
-    flex-direction: column; // mobile default
-    gap: clamp(1rem, 2vw, 2rem);
-    margin: clamp(1.5rem, 3vw, 2.5rem);
-    gap: clamp(1rem, 2vw, 2rem);
-  
-    @media (min-width: 768px) {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-  
-    .current-image,
-    .assignments {
-      flex: 1;
-    }
-  }
-  
+ 
   }
 
  // Base button style using mixin
@@ -203,5 +152,14 @@
   // Primary button 
   .btn-primary {
     @include button-style($clr-primary, $clr-button-text, $clr-primary-dark);
+  }
+  
+  select {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid $clr-primary;
+    background-color: $clr-card-bg;
+    transition: border-color 0.2s ease;
   }
   
