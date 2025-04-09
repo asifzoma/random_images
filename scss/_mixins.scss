@@ -37,11 +37,11 @@
 
 
   @mixin responsive-padding {
-  padding: clamp(1rem, 2.5vw, 2rem);
+  padding: clamp(5px, 2.5vw, 10px) clamp(5px, 2.5vw, 10px);
 }
 
 @mixin responsive-margin {
-  margin: clamp(0.5rem, 2vw, 1.5rem) auto;
+  margin: clamp(0.5rem, 2vw, 1.5rem) clamp(0.5rem, 2vw, 1.5rem);
 }
 
   

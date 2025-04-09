@@ -1,10 +1,8 @@
 // base container layout
 
 .container {
-    max-width: 95vw;
-    margin: clamp(10px, 1vw, 1rem) clamp(10px, 1vw, 1rem) clamp(10px, 1vw, 1rem) clamp(10px, 1vw, 1rem);
-    padding: 10px clamp(2vw, calc(0.184rem + 2.851vw), 2.75rem); // padding for mobile and desktop
-    overflow-x: none;
+    max-width: 100vw;
+     overflow-x: none;
 
     body {
         font-family: $font-body;
@@ -12,6 +10,13 @@
       
 }
 
+.main {
+    max-width: 100vw;
+    margin-left: clamp(10px, 1vw, 1rem);
+    padding: clamp(10px, 1vw, 1rem) clamp(10px, 1vw, 1rem);
+
+    overflow-x: none;
+}
 
 //warning buttons
 .warning-buttons {
@@ -83,7 +88,6 @@
 .image-layout > section,
 .assign-controls,
 .btn,
-.header-banner,
 .current-image,
 .assignments,
 .email-section {
@@ -91,7 +95,7 @@
   @include responsive-padding;
   @include responsive-margin;
   flex: 1 1 300px;
-  max-width: 400px;
+
 }
 
 
