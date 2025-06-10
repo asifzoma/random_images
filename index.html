@@ -33,7 +33,8 @@
         <section class="assign-section">
                   <!-- Form for email input and assign button -->
           <form id="emailForm" novalidate>
-            <h2 for="emailInput">Add An Email Address:</h2>
+            <h2>Add An Email Address</h2>
+            <label for="emailInput" class="visually-hidden">Email Address</label>
             <input type="email" id="emailInput" placeholder="Enter a valid email" required>
             <button type="button" id="saveEmailBtn" class="btn-primary">Save Email</button>
           </form>
@@ -54,11 +55,10 @@
 
                     <!-- Display assigned image -->
         <section class="assignments">
-                        <h2>Image Assignments</h2>
-                        <div class="image-assign-section">
-                            <div id="assignmentsList" class="grid grid-auto"></div> <!-- Grid will be used to display the assigned images  classes have been added to the grid to make it responsive-->
-                         
-                    
+            <h2>Image Assignments</h2>
+            <div class="image-assign-section">
+                <div id="assignmentsList" class="grid grid-auto"></div>
+            </div>
         </section>
       </div>
   </main>
