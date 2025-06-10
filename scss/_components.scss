@@ -1,165 +1,143 @@
 .header {
     text-align: center;
-    padding-block: clamp(1.5rem, 3vw, 3rem);
+    padding-top: 0.25rem;
+    padding-bottom: 0;
+    margin-bottom: 0;
     
-  
     h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      color: $clr-primary;
-      margin-bottom: clamp(0.5rem, 1vw, 1rem);
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: $clr-primary;
+        margin-bottom: 0.25rem;
     }
     
     p {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: $clr-text;
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: $clr-text;
+        margin: 0;
     }
 
     .banner-img {
-      object-fit: cover;
-      object-position: center;
-      min-width: clamp(200px, 50%, 700px);
-      height: 120px;
-      padding: clamp(5px, 1vw, 1rem) clamp(5px, 1vw, 1rem);
-      border-radius: $radius;
+        object-fit: cover;
+        object-position: center;
+        width: min(700px, 90%);
+        height: 100px;
+        border-radius: $radius;
+        margin: 0;
     }
-  }
+}
 
-  .current-image {
+.current-image {
     h2 {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      color: $clr-primary-dark;
-      margin-bottom: clamp(0.5rem, 1vw, 1rem);
-      text-align: center;
-      border-radius: $radius;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        color: $clr-primary-dark;
+        margin-bottom: clamp(0.5rem, 1vw, 1rem);
+        text-align: center;
+        border-radius: $radius;
     }
-  }
-  
-  .assignments {
+}
 
-    
+.assignments {
     h2 {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      color: $clr-primary-dark;
-      margin-bottom: clamp(0.5rem, 1vw, 1rem);
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        color: $clr-primary-dark;
+        margin-bottom: clamp(0.5rem, 1vw, 1rem);
     }
-  }
+}
 
-  #emailForm {
+#emailForm {
     display: flex;
     flex-direction: column;
-    gap: clamp(0.75rem, 1.5vw, 1.5rem);
-    // max-width: 500px;
-    margin: clamp(5px, 2vw, 10px) clamp(5px, 2vw, 10px);
+    gap: 0.75rem;
+    margin: 0.5rem 0;
 
-    .email-input {
-        max-width: clamp(200px, 50vw, 500px);
-    }
-  
     input[type="email"] {
-      padding: clamp(0.6rem, 1.2vw, 1rem) clamp(0.6rem, 1.2vw, 1rem);
-      font-size: clamp(1rem, 2.5vw, 1.125rem);
-      border: 1px solid $clr-border;
-      border-radius: $radius;
-      background-color: $clr-input-bg;
-      color: $clr-text;
-    //   width: 100%;
-      margin: clamp(10px, 1vw, 1rem) clamp(10px, 1vw, 1rem);
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 1px solid $clr-border;
+        border-radius: $radius;
+        background-color: $clr-input-bg;
+        color: $clr-text;
+        width: 100%;
+        max-width: 500px;
+
+        &.input-error {
+            border-color: $clr-danger;
+            background-color: lighten($clr-danger, 45%);
+        }
+    }
+}
+
+.btn,
+.btn-primary,
+.btn-warning,
+.btn-danger {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: $radius;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+        filter: brightness(0.9);
+    }
+    
+    &:active {
+        transform: scale(0.98);
     }
 
-    
-   
-    .current-image {
-        text-align: center;
-        margin-bottom: clamp(2rem, 3vw, 3rem);
-      
-        .image-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-top: clamp(1rem, 2vw, 2rem);
-      
-          img {
-            max-width: 100%;
-            height: auto;
-            border-radius: $radius;
-            box-shadow: $shadow;
-            margin: clamp(10px, 1vw, 1rem) clamp(10px, 1vw, 1rem);
-            padding: clamp(10px, 1vw, 1rem) clamp(10px, 1vw, 1rem);
-          }
-        }
-      }
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+}
 
-        #loadImageBtn {
-          display: block;
-          margin: clamp(10px, 1vw, 1rem) auto;
-          background-color: $clr-primary-dark;
-          color: $clr-button-text;
-          font-weight: 600;
-          padding: clamp(10px, 1vw, 1rem) clamp(0.6rem, 1vw, 1rem);
-          font-size: clamp(1rem, 2.5vw, 1.125rem);
-          border: none;
-          border-radius: $radius;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-          
-          &:hover {
-            background-color: $clr-primary;
-          }
-        }
-      
-    
+.btn-primary {
+    background-color: $clr-primary;
+    color: $clr-button-text;
+}
 
-      //validation for when email has been inputted
+.btn-warning {
+    background-color: $clr-warning;
+    color: #000;
+}
 
-      // Error styles
-.input-error {
-    border-color: red;
-    background-color: #ffe6e6;
-  }
-  
-  // Shake animation
-  @keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
-  }
-  
-  .shake {
-    animation: shake 0.3s ease;
-  }
+.btn-danger {
+    background-color: $clr-danger;
+    color: $clr-button-text;
+}
 
- 
-  }
-
- // Base button style using mixin
-
- .btn {
-    @include button-style($clr-primary, $clr-button-text, $clr-primary-dark);
-  }
-  
-  // Danger button (e.g. delete)
-  .btn-danger {
-    @include button-style($clr-danger, $clr-button-text, darken($clr-danger, 10%));
-  }
-    
-  // Warning button 
-  .btn-warning {
-    @include button-style($clr-warning, #000, darken($clr-warning, 10%));
-  }
-  
-  // Primary button 
-  .btn-primary {
-    @include button-style($clr-primary, $clr-button-text, $clr-primary-dark);
-  }
-  
-  select {
-    padding: 0.75rem 1rem;
+select {
+    padding: 0.75rem;
     font-size: 1rem;
-    border-radius: 8px;
-    border: 1px solid $clr-primary;
+    border-radius: $radius;
+    border: 1px solid $clr-border;
     background-color: $clr-card-bg;
-    transition: border-color 0.2s ease;
-  }
+    width: 100%;
+    max-width: 500px;
+    cursor: pointer;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.3s ease;
+}
+
+.image-container {
+    margin: 1rem 0;
+    
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: $radius;
+        box-shadow: $shadow;
+    }
+}
   
