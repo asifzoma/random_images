@@ -1,27 +1,48 @@
-// Save validated email addresses and assigned images
-const savedEmails = new Set();
-const emailImageMap = new Map();
-let currentSeed = null;
+/**
+ * Image Assignment Application
+ * 
+ * This application allows users to:
+ * 1. Generate and assign random images to email addresses
+ * 2. Store assignments in local storage
+ * 3. Manage email addresses (add/delete)
+ * 4. Prevent duplicate image assignments
+ */
 
-// Generate a seeded image URL
+// Initialize data structures for storing emails and image assignments
+const savedEmails = new Set();  // Using Set to ensure unique email addresses
+const emailImageMap = new Map(); // Maps emails to their assigned images array
+let currentSeed = null; // Tracks current image seed for preventing duplicates
+
+/**
+ * Generates a random seed and returns a seeded image URL
+ * Uses Lorem Picsum API with consistent dimensions (200x200)
+ */
 function getRandomImageUrl() {
   currentSeed = Math.random().toString(36).substring(2, 10);
   return `https://picsum.photos/seed/${currentSeed}/200`;
 }
 
-// Load a random image into the preview
+/**
+ * Updates the preview image with a new random image
+ * Called when loading new images or after assignments
+ */
 function loadRandomImage() {
   const img = document.getElementById('currentImage');
   img.src = getRandomImageUrl();
 }
 
-// Validate email format
+/**
+ * Validates email format using regex
+ * Checks for: username@domain.tld format
+ */
 function validateEmail(email) {
   return /^[\w-.]+@[\w-]+\.[\w-.]+$/.test(email);
 }
 
-
-// Display all assignments under each email
+/**
+ * Renders all email-image assignments in the UI
+ * Creates cards showing each email and its assigned images
+ */
 function displayAssignments() {
   const container = document.getElementById('assignmentsList');
   container.innerHTML = '';
@@ -44,11 +65,13 @@ function displayAssignments() {
   });
 }
 
-
-// Reusable function to apply shake + error styling
+/**
+ * Applies a shake animation and error styling to invalid inputs
+ * Used for visual feedback on validation errors
+ */
 function applyShakeEffect(element) {
   element.classList.remove('shake');
-  void element.offsetWidth; // forces reflow
+  void element.offsetWidth; // Forces reflow to restart animation
   element.classList.add('input-error', 'shake');
 
   setTimeout(() => {
@@ -56,13 +79,13 @@ function applyShakeEffect(element) {
   }, 500);
 }
 
-
-
-// Load a random image
+// Event Listener: Load New Random Image
 document.getElementById('loadImageBtn').addEventListener('click', loadRandomImage);
 
-
-// Add a new email to the dropdown
+/**
+ * Adds a new email option to the dropdown select
+ * Called after validating and saving a new email
+ */
 function addEmailToDropdown(email) {
   const dropdown = document.getElementById('emailSelect');
   const option = document.createElement('option');
@@ -71,7 +94,11 @@ function addEmailToDropdown(email) {
   dropdown.appendChild(option);
 }
 
-// Show a toast message (success or error)
+/**
+ * Creates and displays a toast notification
+ * @param {string} message - The message to display
+ * @param {string} bgColor - Background color (default: success green)
+ */
 function showToast(message, bgColor = '#28a745') {
   let toast = document.getElementById('toast');
   if (!toast) {
@@ -97,24 +124,24 @@ function showToast(message, bgColor = '#28a745') {
   setTimeout(() => toast.style.opacity = '0', 4000);
 }
 
-// Save Email Button Click
+// Event Listener: Save Email Button
+// Validates and saves new email addresses
 const saveEmailBtn = document.getElementById('saveEmailBtn');
 saveEmailBtn.addEventListener('click', function () {
   const emailInput = document.getElementById('emailInput');
   const email = emailInput.value.trim().toLowerCase();
 
+  // Validate email format
   if (!validateEmail(email)) {
     showToast('Please enter a valid email address.', '#d9534f');
     applyShakeEffect(emailInput);
-
-
     return;
   }
 
+  // Check for duplicate emails
   if (!savedEmails.has(email)) {
     savedEmails.add(email);
     localStorage.setItem('savedEmails', JSON.stringify([...savedEmails]));
-
     addEmailToDropdown(email);
     showToast(`Email ${email} added successfully.`);
   } else {
@@ -124,52 +151,63 @@ saveEmailBtn.addEventListener('click', function () {
   emailInput.value = '';
 });
 
-// Assign Image Button Click
+// Event Listener: Assign Image Button
+// Assigns current image to selected email if not duplicate
 const assignImageBtn = document.getElementById('assignImageBtn');
 assignImageBtn.addEventListener('click', function () {
   const emailSelect = document.getElementById('emailSelect');
   const email = emailSelect.value;
   const imageUrl = `https://picsum.photos/seed/${currentSeed}/200`;
 
+  // Validate email selection
   if (!email) {
     showToast('Please select an email address first.', '#d9534f');
     applyShakeEffect(emailSelect);
     return;
   }
 
+  // Initialize empty array for new emails
   if (!emailImageMap.has(email)) {
     emailImageMap.set(email, []);
   }
 
+  // Prevent duplicate image assignments
+  const existingImages = emailImageMap.get(email);
+  if (existingImages.includes(imageUrl)) {
+    showToast('This image is already assigned to this email. Please load a new image.', '#ffc107');
+    applyShakeEffect(document.getElementById('loadImageBtn'));
+    return;
+  }
+
+  // Save assignment and update storage
   emailImageMap.get(email).push(imageUrl);
   const plainMap = Object.fromEntries(emailImageMap);
-localStorage.setItem('emailImageMap', JSON.stringify(plainMap));
+  localStorage.setItem('emailImageMap', JSON.stringify(plainMap));
 
   displayAssignments();
   showToast(`✅ Image successfully assigned to ${email}`);
-//   loadRandomImage();
+  loadRandomImage(); // Auto-load new image to prevent duplicates
 });
 
-// Sync dropdown with input field if needed
+// Event Listener: Email Select Change
+// Syncs dropdown selection with input field
 const emailSelect = document.getElementById('emailSelect');
 emailSelect.addEventListener('change', function () {
   document.getElementById('emailInput').value = this.value;
 });
 
-// Load an initial image on page load
+// Load initial random image on page load
 document.addEventListener('DOMContentLoaded', loadRandomImage);
 
-
-// Clear All Images Button Click
+// Event Listener: Clear Images Button
+// Removes all images from selected email
 const clearImagesBtn = document.getElementById('clearImagesBtn');
 clearImagesBtn.addEventListener('click', function () {
   const selectedEmail = emailSelect.value;
 
   if (!selectedEmail) {
     showToast('Please select an email address.', '#d9534f');
-  
-    applyShakeEffect(emailSelect); //  should shake the dropdown
-  
+    applyShakeEffect(emailSelect);
     return;
   }
 
@@ -183,8 +221,8 @@ clearImagesBtn.addEventListener('click', function () {
   }
 });
 
-
-// Delete Email Button Click
+// Event Listener: Delete Email Button
+// Removes email and its assignments completely
 const deleteEmailBtn = document.getElementById('deleteEmailBtn');
 deleteEmailBtn.addEventListener('click', function () {
   const selectedEmail = emailSelect.value;
@@ -194,7 +232,7 @@ deleteEmailBtn.addEventListener('click', function () {
     return;
   }
 
-  // Remove from Set and Map
+  // Remove from all data structures
   savedEmails.delete(selectedEmail);
   emailImageMap.delete(selectedEmail);
 
@@ -202,7 +240,7 @@ deleteEmailBtn.addEventListener('click', function () {
   const optionToRemove = [...emailSelect.options].find(opt => opt.value === selectedEmail);
   if (optionToRemove) emailSelect.removeChild(optionToRemove);
 
-  // Clear from input
+  // Clear input field
   document.getElementById('emailInput').value = '';
 
   // Update storage
