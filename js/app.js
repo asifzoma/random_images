@@ -55,7 +55,8 @@ function displayAssignments() {
     const card = document.createElement('div');
     card.classList.add('assignment-card');
 
-    const emailHeader = document.createElement('h3');
+    const emailHeader = document.createElement('div');
+    emailHeader.className = 'assignment-email';
     emailHeader.textContent = selectedEmail;
     card.appendChild(emailHeader);
 

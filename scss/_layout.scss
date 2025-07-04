@@ -14,6 +14,9 @@
 // warning buttons
 .warning-buttons {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   margin: 0.5rem 0;
 }
@@ -52,7 +55,7 @@
   .assignment-card {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
     box-sizing: border-box;
     overflow: visible;
@@ -71,6 +74,7 @@
       min-width: 0;
       margin: 0 auto;
       padding-bottom: 0.5rem;
+      padding-top: 10px;
       scrollbar-width: auto;
       scrollbar-color: $clr-primary #e0e0e0;
 
@@ -149,4 +153,20 @@
   max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
+}
+
+.assignments h2,
+.assignment-card h3 {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.assignment-email {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 0.5rem;
+  align-self: center;
+  width: 100%;
 }
