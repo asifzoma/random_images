@@ -47,22 +47,32 @@ function displayAssignments() {
   const container = document.getElementById('assignmentsList');
   container.innerHTML = '';
 
-  emailImageMap.forEach((images, email) => {
+  const emailSelect = document.getElementById('emailSelect');
+  const selectedEmail = emailSelect.value;
+
+  if (selectedEmail && emailImageMap.has(selectedEmail)) {
+    const images = emailImageMap.get(selectedEmail);
     const card = document.createElement('div');
     card.classList.add('assignment-card');
 
     const emailHeader = document.createElement('h3');
-    emailHeader.textContent = email;
+    emailHeader.textContent = selectedEmail;
     card.appendChild(emailHeader);
 
-    images.forEach((imgUrl) => {
+    // Create image library container
+    const imageLibrary = document.createElement('div');
+    imageLibrary.classList.add('image-library');
+
+    // Render images in reverse order (newest left, oldest right)
+    [...images].reverse().forEach((imgUrl) => {
       const img = document.createElement('img');
       img.src = imgUrl;
-      card.appendChild(img);
+      imageLibrary.appendChild(img);
     });
 
+    card.appendChild(imageLibrary);
     container.appendChild(card);
-  });
+  }
 }
 
 /**
@@ -194,6 +204,7 @@ assignImageBtn.addEventListener('click', function () {
 const emailSelect = document.getElementById('emailSelect');
 emailSelect.addEventListener('change', function () {
   document.getElementById('emailInput').value = this.value;
+  displayAssignments();
 });
 
 // Load initial random image on page load

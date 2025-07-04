@@ -82,6 +82,9 @@
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    min-height: 44px;
+    min-width: 120px;
+    font-size: 1.1rem;
     
     &:hover {
         filter: brightness(0.9);
@@ -153,15 +156,25 @@ select {
 .assign-controls {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
+    align-items: stretch;
 
     select {
         margin-bottom: 32px;
+        min-height: 44px;
+        font-size: 1.1rem;
+        padding: 0.75rem 1rem;
+        cursor: pointer;
     }
 
     #assignImageBtn {
         position: relative;
         z-index: 2;
+        min-height: 44px;
+        min-width: 120px;
+        font-size: 1.1rem;
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
     }
 }
   
