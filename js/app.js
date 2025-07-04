@@ -115,23 +115,30 @@ function showToast(message, bgColor = '#28a745') {
     toast = document.createElement('div');
     toast.id = 'toast';
     toast.style.position = 'fixed';
-    toast.style.top = '50%';
-    toast.style.left = '50%';
-    toast.style.transform = 'translateX(-50%)';
+    toast.style.top = '20px';
+    toast.style.right = '20px';
+    toast.style.transform = 'translateX(100%)';
+    toast.style.opacity = '0';
+    toast.style.pointerEvents = 'none';
     toast.style.padding = '1rem 1.5rem';
     toast.style.borderRadius = '8px';
     toast.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
     toast.style.zIndex = '999';
     toast.style.fontSize = '1rem';
-    toast.style.opacity = '0';
-    toast.style.transition = 'opacity 0.3s ease';
+    toast.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
     toast.style.color = '#fff';
     document.body.appendChild(toast);
   }
   toast.textContent = message;
   toast.style.backgroundColor = bgColor;
   toast.style.opacity = '1';
-  setTimeout(() => toast.style.opacity = '0', 4000);
+  toast.style.pointerEvents = 'auto';
+  toast.style.transform = 'translateX(0)';
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.pointerEvents = 'none';
+    toast.style.transform = 'translateX(100%)';
+  }, 4000);
 }
 
 // Event Listener: Save Email Button
