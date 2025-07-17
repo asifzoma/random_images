@@ -36,10 +36,15 @@
   }
   
   .current-image,
-  .assign-section,
+  .assign-section {
+    flex: 1;
+    min-width: 140px;
+    width: 100%; // Ensure full width on mobile
+  }
+  
   .assignments {
     flex: 1;
-    min-width: 250px;
+    min-width: 600px; // Ensure enough width for 2 images + gaps + padding
     width: 100%; // Ensure full width on mobile
   }
 }
@@ -58,28 +63,32 @@
     align-items: center;
     width: 100%;
     box-sizing: border-box;
-    overflow: visible;
+    overflow: hidden;
+    max-width: 100%;
 
     h3 {
       margin-bottom: 0.5rem;
     }
 
     .image-library {
-      display: flex;
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 0.5rem;
-      overflow-x: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       width: 100%;
-      max-width: 339px;
+      max-width: 100%;
       min-width: 0;
       margin: 0 auto;
-      padding-bottom: 0.5rem;
-      padding-top: 10px;
+      padding: 5px;
       scrollbar-width: auto;
       scrollbar-color: $clr-primary #e0e0e0;
+      max-height: 600px; // Increased height to accommodate larger images
+      box-sizing: border-box;
+      position: relative;
 
       &::-webkit-scrollbar {
-        height: 12px;
+        width: 12px; // Changed from height to width for vertical scrollbar
       }
       &::-webkit-scrollbar-thumb {
         background: $clr-primary;
@@ -92,10 +101,10 @@
     }
 
     img {
-      width: 120px;
-      min-width: 120px;
-      max-width: 120px;
-      height: 120px;
+      width: 100%;
+      min-width: 0; // Remove fixed min-width to allow grid sizing
+      max-width: 100%;
+      height: auto; // Match current image height behavior
       object-fit: cover;
       border-radius: $radius;
       flex: 0 0 auto;
@@ -139,10 +148,10 @@
 }
 
 .image-library img {
-  width: 120px;
-  min-width: 120px;
-  max-width: 120px;
-  height: 120px;
+  width: 100%;
+  min-width: 0; // Remove fixed min-width to allow grid sizing
+  max-width: 100%;
+  height: auto; // Match current image height behavior
   object-fit: cover;
   border-radius: $radius;
   flex: 0 0 auto;
@@ -151,8 +160,10 @@
 .assignments {
   width: 100%;
   max-width: 100%;
-  min-width: 0;
+  min-width: 600px; // Ensure enough width for 2 images + gaps + padding
   box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
 }
 
 .assignments h2,

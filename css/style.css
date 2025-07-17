@@ -44,10 +44,15 @@ h1, h2, h3 {
   }
 }
 .image-layout .current-image,
-.image-layout .assign-section,
+.image-layout .assign-section {
+  flex: 1;
+  min-width: 140px;
+  width: 100%;
+}
+
 .image-layout .assignments {
   flex: 1;
-  min-width: 250px;
+  min-width: 600px; /* Ensure enough width for 2 images + gaps + padding */
   width: 100%;
 }
 
@@ -64,27 +69,31 @@ h1, h2, h3 {
   align-items: center;
   width: 100%;
   box-sizing: border-box;
-  overflow: visible;
+  overflow: hidden;
+  max-width: 100%;
 }
 #assignmentsList .assignment-card h3 {
   margin-bottom: 0.5rem;
 }
 #assignmentsList .assignment-card .image-library {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
-  overflow-x: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   width: 100%;
-  max-width: 339px;
+  max-width: 100%;
   min-width: 0;
   margin: 0 auto;
-  padding-bottom: 0.5rem;
-  padding-top: 10px;
+  padding: 5px;
   scrollbar-width: auto;
   scrollbar-color: #3e8ed0 #e0e0e0;
+  max-height: 600px; /* Increased height to accommodate larger images */
+  box-sizing: border-box;
+  position: relative;
 }
 #assignmentsList .assignment-card .image-library::-webkit-scrollbar {
-  height: 12px;
+  width: 12px; /* Changed from height to width for vertical scrollbar */
 }
 #assignmentsList .assignment-card .image-library::-webkit-scrollbar-thumb {
   background: #3e8ed0;
@@ -95,10 +104,10 @@ h1, h2, h3 {
   border-radius: 6px;
 }
 #assignmentsList .assignment-card img {
-  width: 120px;
-  min-width: 120px;
-  max-width: 120px;
-  height: 120px;
+  width: 100%;
+  min-width: 0; /* Remove fixed min-width to allow grid sizing */
+  max-width: 100%;
+  height: auto; /* Match current image height behavior */
   object-fit: cover;
   border-radius: 10px;
   flex: 0 0 auto;
@@ -141,10 +150,10 @@ h1, h2, h3 {
 }
 
 .image-library img {
-  width: 120px;
-  min-width: 120px;
-  max-width: 120px;
-  height: 120px;
+  width: 100%;
+  min-width: 0; /* Remove fixed min-width to allow grid sizing */
+  max-width: 100%;
+  height: auto; /* Match current image height behavior */
   object-fit: cover;
   border-radius: 10px;
   flex: 0 0 auto;
@@ -153,8 +162,10 @@ h1, h2, h3 {
 .assignments {
   width: 100%;
   max-width: 100%;
-  min-width: 0;
+  min-width: 600px; /* Ensure enough width for 2 images + gaps + padding */
   box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
 }
 
 .assignments h2,
