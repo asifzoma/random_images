@@ -204,7 +204,7 @@ assignImageBtn.addEventListener('click', function () {
 
   displayAssignments();
   showToast(`✅ Image successfully assigned to ${email}`);
-  loadRandomImage(); // Auto-load new image to prevent duplicates
+  // Removed auto-load new image - current image stays for multiple assignments
 });
 
 // Event Listener: Email Select Change
