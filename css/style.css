@@ -35,7 +35,7 @@ h1, h2, h3 {
   margin: 0;
   padding: 0 0.5rem;
 }
-@media (min-width: 903px) {
+@media (min-width: 1300px) {
   .image-layout {
     flex-direction: row;
     align-items: flex-start;
@@ -49,10 +49,9 @@ h1, h2, h3 {
   min-width: 140px;
   width: 100%;
 }
-
 .image-layout .assignments {
   flex: 1;
-  min-width: 600px; /* Ensure enough width for 2 images + gaps + padding */
+  min-width: 120px;
   width: 100%;
 }
 
@@ -88,12 +87,12 @@ h1, h2, h3 {
   padding: 5px;
   scrollbar-width: auto;
   scrollbar-color: #3e8ed0 #e0e0e0;
-  max-height: 600px; /* Increased height to accommodate larger images */
+  max-height: 600px;
   box-sizing: border-box;
   position: relative;
 }
 #assignmentsList .assignment-card .image-library::-webkit-scrollbar {
-  width: 12px; /* Changed from height to width for vertical scrollbar */
+  width: 12px;
 }
 #assignmentsList .assignment-card .image-library::-webkit-scrollbar-thumb {
   background: #3e8ed0;
@@ -105,9 +104,9 @@ h1, h2, h3 {
 }
 #assignmentsList .assignment-card img {
   width: 100%;
-  min-width: 0; /* Remove fixed min-width to allow grid sizing */
+  min-width: 0;
   max-width: 100%;
-  height: auto; /* Match current image height behavior */
+  height: auto;
   object-fit: cover;
   border-radius: 10px;
   flex: 0 0 auto;
@@ -151,18 +150,17 @@ h1, h2, h3 {
 
 .image-library img {
   width: 100%;
-  min-width: 0; /* Remove fixed min-width to allow grid sizing */
+  min-width: 0;
   max-width: 100%;
-  height: auto; /* Match current image height behavior */
+  height: auto;
   object-fit: cover;
   border-radius: 10px;
   flex: 0 0 auto;
 }
 
 .assignments {
-  width: 100%;
   max-width: 100%;
-  min-width: 600px; /* Ensure enough width for 2 images + gaps + padding */
+  min-width: 120px;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;

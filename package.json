@@ -1,0 +1,28 @@
+{
+  "name": "random-images",
+  "version": "1.0.0",
+  "description": "Random Image Assigner - Portfolio Project",
+  "main": "index.html",
+  "scripts": {
+    "sass": "sass scss/style.scss:css/style.css",
+    "sass:watch": "sass --watch scss/style.scss:css/style.css",
+    "sass:build": "sass scss/style.scss:css/style.css --style compressed",
+    "dev": "sass --watch scss/style.scss:css/style.css --style expanded"
+  },
+  "keywords": [
+    "sass",
+    "scss",
+    "css",
+    "portfolio",
+    "image-assigner"
+  ],
+  "author": "Asif Ahmad",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.69.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  }
+} 
