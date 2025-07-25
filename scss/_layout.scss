@@ -44,7 +44,7 @@
   
   .assignments {
     flex: 1;
-    min-width: 600px; // Ensure enough width for 2 images + gaps + padding
+    min-width: 120px; // Set min-width to 120px as requested
     width: 100%; // Ensure full width on mobile
   }
 }
@@ -158,9 +158,8 @@
 }
 
 .assignments {
-  width: 100%;
   max-width: 100%;
-  min-width: 600px; // Ensure enough width for 2 images + gaps + padding
+  min-width: 120px; // Ensure enough width for 2 images + gaps + padding
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
