@@ -25,42 +25,86 @@ h1, h2, h3 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  margin: 0.5rem 0;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 480px) {
+  .warning-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
 
 .image-layout {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
   margin: 0;
-  padding: 0 0.5rem;
+  padding: 0;
 }
-@media (min-width: 1300px) {
+@media (min-width: 768px) {
   .image-layout {
     flex-direction: row;
     align-items: flex-start;
-    gap: 0.75rem;
+    gap: 1.5rem;
     padding: 0;
+  }
+  .image-layout .assign-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+    width: 100%;
+  }
+  .image-layout .assign-section #emailForm {
+    width: 100%;
+  }
+  .image-layout .assign-section .assign-controls {
+    width: 100%;
+  }
+  .image-layout .assign-section .warning-buttons {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+@media (min-width: 1300px) {
+  .image-layout {
+    gap: 2rem;
   }
 }
 .image-layout .current-image,
 .image-layout .assign-section {
   flex: 1;
-  min-width: 140px;
+  min-width: 0;
   width: 100%;
+  box-sizing: border-box;
 }
 .image-layout .assignments {
   flex: 1;
-  min-width: 120px;
+  min-width: 0;
   width: 100%;
+  box-sizing: border-box;
 }
 
 #assignmentsList {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
   padding: 0.5rem;
   overflow: visible;
+}
+@media (max-width: 480px) {
+  #assignmentsList {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  #assignmentsList {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
 }
 #assignmentsList .assignment-card {
   display: flex;
@@ -120,9 +164,20 @@ h1, h2, h3 {
   background-color: #f9f9f9;
   border: 1px solid #3e8ed0;
   border-radius: 10px;
-  padding: 0.5rem;
+  padding: 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.2s ease;
+  box-sizing: border-box;
+  margin: 0;
+}
+@media (max-width: 480px) {
+  .image-layout > section,
+  .assign-controls,
+  .current-image,
+  .assignments,
+  .email-section {
+    padding: 1rem;
+  }
 }
 .image-layout > section:hover,
 .assign-controls:hover,
@@ -160,7 +215,7 @@ h1, h2, h3 {
 
 .assignments {
   max-width: 100%;
-  min-width: 120px;
+  min-width: 0;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
@@ -228,7 +283,9 @@ h1, h2, h3 {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  margin: 0.5rem 0;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 #emailForm input[type=email] {
   padding: 0.75rem;
@@ -237,8 +294,9 @@ h1, h2, h3 {
   border-radius: 10px;
   background-color: #ffffff;
   color: #1a1a1a;
-  width: 90%;
-  max-width: 500px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 #emailForm input[type=email].input-error {
   border-color: #910707;
@@ -259,6 +317,8 @@ h1, h2, h3 {
   min-height: 44px;
   min-width: 120px;
   font-size: 1.1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 .btn:hover,
 .btn-primary:hover,
@@ -303,8 +363,9 @@ select {
   border: 1px solid #e0e0e0;
   background-color: #f9f9f9;
   width: 100%;
-  max-width: 500px;
+  max-width: 100%;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 @keyframes shake {
@@ -340,15 +401,20 @@ select {
 .assign-controls {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
 }
 .assign-controls select {
-  margin-bottom: 32px;
+  margin-bottom: 0;
   min-height: 44px;
   font-size: 1.1rem;
   padding: 0.75rem 1rem;
   cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
 }
 .assign-controls #assignImageBtn {
   position: relative;
@@ -358,6 +424,8 @@ select {
   font-size: 1.1rem;
   padding: 0.75rem 1.5rem;
   cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .visually-hidden {
