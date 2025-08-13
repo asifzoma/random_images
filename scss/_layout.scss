@@ -27,23 +27,43 @@
 .image-layout {
   display: flex;
   flex-direction: column;
+  align-items: stretch; // Make all sections same height
   gap: 0.5rem; // Reduced from 0.75rem
   margin: 0;
   padding: 0; // Removed padding to fix uneven spacing
   
-  // Lower breakpoint for iPad landscape (1024px)
-  @media (min-width: 1024px) {
+  // Breakpoint for tablets and smaller desktops (625px - 1023px)
+  @media (min-width: 625px) and (max-width: 1023px) {
     flex-direction: row;
     align-items: flex-start;
     gap: 0.5rem;
     padding: 0;
   }
   
+  // Lower breakpoint for iPad landscape (1024px)
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: stretch; // Make all cards same height
+    gap: 0.5rem;
+    padding: 0;
+  }
+  
   .current-image,
+  .email-section,
   .assign-section {
     flex: 1;
     min-width: 140px;
+    max-width: 400px; // Limit width when side by side
     width: 100%; // Ensure full width on mobile
+    display: flex;
+    flex-direction: column;
+    
+    // Push buttons to bottom on all screen sizes
+    button,
+    .assign-controls,
+    #emailForm {
+      margin-top: auto;
+    }
   }
   
   .assignments {
