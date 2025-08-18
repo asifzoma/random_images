@@ -35,9 +35,25 @@
   // Breakpoint for tablets and smaller desktops (625px - 1023px)
   @media (min-width: 625px) and (max-width: 1023px) {
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 0.5rem;
     padding: 0;
+
+    .current-image {
+      flex: 0 1 100%;
+      max-width: 100%;
+    }
+
+    .email-section,
+    .assign-section {
+      flex: 1 1 calc(50% - 0.25rem);
+    }
+
+    .assignments {
+      flex: 0 1 100%;
+      max-width: 100%;
+    }
   }
   
   // Lower breakpoint for iPad landscape (1024px)
